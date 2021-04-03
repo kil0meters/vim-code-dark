@@ -203,7 +203,6 @@ call <sid>hi('Type', s:cdBlue, {}, 'italic', {})
 call <sid>hi('StorageClass', s:cdBlue, {}, 'none', {})
 call <sid>hi('Structure', s:cdBlue, {}, 'none', {})
 call <sid>hi('Typedef', s:cdBlue, {}, 'none', {})
-
 call <sid>hi('Special', s:cdYellowOrange, {}, 'none', {})
 call <sid>hi('SpecialChar', s:cdFront, {}, 'none', {})
 call <sid>hi('Tag', s:cdFront, {}, 'none', {})
@@ -226,16 +225,29 @@ call <sid>hi('SpellRare', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
 call <sid>hi('SpellLocal', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
 
 " Markdown:
-call <sid>hi('markdownBold', s:cdBlue, {}, 'bold', {})
+call <sid>hi('markdownBold', {}, {}, 'bold', {})
+call <sid>hi('markdownItalic', {}, {}, 'italic', {})
+call <sid>hi('markdownBoldItalic', {}, {}, 'italic,bold', {})
 call <sid>hi('markdownCode', s:cdOrange, {}, 'none', {})
 call <sid>hi('markdownRule', s:cdBlue, {}, 'bold', {})
 call <sid>hi('markdownCodeDelimiter', s:cdOrange, {}, 'none', {})
-call <sid>hi('markdownHeadingDelimiter', s:cdBlue, {}, 'none', {})
 call <sid>hi('markdownFootnote', s:cdOrange, {}, 'none', {})
 call <sid>hi('markdownFootnoteDefinition', s:cdOrange, {}, 'none', {})
 call <sid>hi('markdownUrl', s:cdLightBlue, {}, 'underline', {})
 call <sid>hi('markdownLinkText', s:cdOrange, {}, 'none', {})
 call <sid>hi('markdownEscape', s:cdYellowOrange, {}, 'none', {})
+call <sid>hi('markdownH1', s:cdBlue, {}, 'bold', {})
+call <sid>hi('markdownH2', s:cdYellow, {}, 'bold', {})
+call <sid>hi('markdownH3', s:cdPink, {}, 'bold', {})
+call <sid>hi('markdownH4', s:cdOrange, {}, 'bold', {})
+call <sid>hi('markdownH5', s:cdRed, {}, 'bold', {})
+call <sid>hi('markdownH6', s:cdGreen, {}, 'bold', {})
+hi! link markdownH1Delimiter markdownH1
+hi! link markdownH2Delimiter markdownH2
+hi! link markdownH3Delimiter markdownH3
+hi! link markdownH4Delimiter markdownH4
+hi! link markdownH5Delimiter markdownH5
+hi! link markdownH6Delimiter markdownH6
 
 " TeX:
 call <sid>hi('texStatement', s:cdBlue, {}, 'none', {})
@@ -295,12 +307,3 @@ call <sid>hi('rainbowcol1', s:cdPink, {}, 'none', {})   " 7
 call <sid>hi('GitSignsAdd', s:cdGreen, {}, 'none', {})
 call <sid>hi('GitSignsChange', s:cdBlue, {}, 'none', {})
 call <sid>hi('GitSignsDelete', s:cdRed, {}, 'none', {})
-
-" Neowiki:
-call <sid>hi('NeowikiH1', s:cdBlue, {}, 'bold', {})
-call <sid>hi('NeowikiH2', s:cdYellow, {}, 'bold', {})
-call <sid>hi('NeowikiH3', s:cdGreen, {}, 'bold', {})
-call <sid>hi('NeowikiH4', s:cdOrange, {}, 'bold', {})
-call <sid>hi('NeowikiH5', s:cdRed, {}, 'bold', {})
-call <sid>hi('NeowikiH6', s:cdViolet, {}, 'bold', {})
-call <sid>hi('NeowikiH7', s:cdPink, {}, 'bold', {})
