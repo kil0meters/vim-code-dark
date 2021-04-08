@@ -156,7 +156,7 @@ call <sid>hi('PmenuSbar', {}, s:cdPopupHighlightGray, 'none', {})
 call <sid>hi('PmenuThumb', {}, s:cdPopupFront, 'none', {})
 call <sid>hi('Question', s:cdBlue, s:cdBack, 'none', {})
 call <sid>hi('Search', s:cdNone, s:cdSearch, 'none', {})
-call <sid>hi('SpecialKey', s:cdBlue, s:cdNone, 'none', {})
+call <sid>hi('SpecialKey', s:cdBlue, {}, 'none', {})
 call <sid>hi('StatusLine', s:cdFront, s:cdLeftMid, 'none', {})
 call <sid>hi('StatusLineNC', s:cdFront, s:cdLeftDark, 'none', {})
 call <sid>hi('TabLine', s:cdFront, s:cdTabOther, 'none', {})
@@ -173,7 +173,7 @@ hi! link diffAdded DiffAdd
 hi! link diffChanged DiffChange
 hi! link diffRemoved DiffDelete
 
-call <sid>hi('Comment', s:cdGreen, {}, 'italic', {})
+call <sid>hi('Comment', s:cdGreen, {}, 'none', {})
 
 call <sid>hi('Constant', s:cdPink, {}, 'nocombine,bold', {})
 call <sid>hi('String', s:cdOrange, {}, 'none', {})
@@ -204,9 +204,9 @@ call <sid>hi('StorageClass', s:cdBlue, {}, 'none', {})
 call <sid>hi('Structure', s:cdBlue, {}, 'none', {})
 call <sid>hi('Typedef', s:cdBlue, {}, 'none', {})
 call <sid>hi('Special', s:cdYellowOrange, {}, 'none', {})
-call <sid>hi('SpecialChar', s:cdFront, {}, 'none', {})
+call <sid>hi('SpecialChar', s:cdRed, {}, 'none', {})
 call <sid>hi('Tag', s:cdFront, {}, 'none', {})
-call <sid>hi('Delimiter', s:cdFront, {}, 'none', {})
+call <sid>hi('Delimiter', s:cdGray, {}, 'none', {})
 call <sid>hi('SpecialComment', s:cdGreen, {}, 'none', {})
 call <sid>hi('Debug', s:cdFront, {}, 'none', {})
 
@@ -219,10 +219,10 @@ call <sid>hi('Error', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
 
 call <sid>hi('Todo', s:cdNone, s:cdLeftMid, 'none', {})
 
-call <sid>hi('SpellBad', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
-call <sid>hi('SpellCap', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
-call <sid>hi('SpellRare', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
-call <sid>hi('SpellLocal', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
+call <sid>hi('SpellBad', s:cdRed, {}, 'undercurl', s:cdRed)
+call <sid>hi('SpellCap', s:cdRed, {}, 'undercurl', s:cdRed)
+call <sid>hi('SpellRare', s:cdRed, {}, 'undercurl', s:cdRed)
+call <sid>hi('SpellLocal', s:cdRed, {}, 'undercurl', s:cdRed)
 
 " Markdown:
 call <sid>hi('markdownBold', {}, {}, 'bold', {})
@@ -248,6 +248,16 @@ hi! link markdownH3Delimiter markdownH3
 hi! link markdownH4Delimiter markdownH4
 hi! link markdownH5Delimiter markdownH5
 hi! link markdownH6Delimiter markdownH6
+
+" Vimwiki:
+call <sid>hi('VimwikiHeaderChar', s:cdGreen, {}, 'none', {})
+hi! link VimwikiHeader1 markdownH1
+hi! link VimwikiHeader2 markdownH2
+hi! link VimwikiHeader3 markdownH3
+hi! link VimwikiHeader4 markdownH4
+hi! link VimwikiHeader5 markdownH5
+hi! link VimwikiHeader6 markdownH6
+hi! link VimwikiLink markdownUrl
 
 " TeX:
 call <sid>hi('texStatement', s:cdBlue, {}, 'none', {})
@@ -281,7 +291,6 @@ call <sid>hi('LspDiagnosticsDefaultInformation', s:cdViolet, {}, 'none', {})
 call <sid>hi('LspDiagnosticsDefaultHint', s:cdPink, {}, 'none', {})
 
 " TreeSitter:
-call <sid>hi('TSPunctDelimiter', s:cdGray, {}, 'none', {})
 call <sid>hi('TSVariable', s:cdLightBlue, {}, 'none', {}) " Not sure about this
 call <sid>hi('TSProperty', s:cdYellow, {}, 'none', {}) " Not sure about this
 call <sid>hi('TSVariableBuiltin', s:cdPink, {}, 'none', {})
