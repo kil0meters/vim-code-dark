@@ -69,46 +69,46 @@ let s:cdYellowOrange = '#D7BA7D'
 let s:cdYellow = '#DCDCAA'
 let s:cdPink = '#C586C0'
 
-exec 'hi Normal'         .' guifg='.s:cdFront         .' guibg='.s:cdBack
-exec 'hi ColorColumn'    .' guibg='.s:cdCursorDarkDark
-exec 'hi Cursor'         .' guifg='.s:cdCursorDark    .' guibg='.s:cdCursorLight
-exec 'hi CursorLine'                                  .' guibg='.s:cdCursorDarkDark
-exec 'hi CursorColumn'                                .' guibg='.s:cdCursorDarkDark
-exec 'hi Directory'      .' guifg='.s:cdBlue          .' guibg='.s:cdBack
-exec 'hi DiffAdd'                                     .' guibg='.s:cdDiffGreenLight
-exec 'hi DiffChange'                                  .' guibg='.s:cdDiffRedDark
-exec 'hi DiffDelete'                                  .' guibg='.s:cdDiffRedLight
-exec 'hi DiffText'                                    .' guibg='.s:cdDiffRedLight
-exec 'hi EndOfBuffer'    .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack
-exec 'hi ErrorMsg'       .' guifg='.s:cdRed           .' guibg='.s:cdBack
-exec 'hi VertSplit'      .' guifg='.s:cdSplitDark     .' guibg='.s:cdBack
-exec 'hi Folded'         .' guifg='.s:cdLeftLight     .' guibg='.s:cdLeftDark
-exec 'hi FoldColumn'     .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack
-exec 'hi SignColumn'                                  .' guibg='.s:cdBack
-exec 'hi IncSearch'                                   .' guibg='.s:cdSearchCurrent
-exec 'hi LineNr'         .' guifg='.s:cdPopupFront    .' guibg='.s:cdBack
+exec 'hi Normal'         .' guifg='.s:cdFront         .' guibg='.s:cdBack              .' gui=none'
+exec 'hi ColorColumn'    .' guibg='.s:cdCursorDarkDark                                 .' gui=none'
+exec 'hi Cursor'         .' guifg='.s:cdCursorDark    .' guibg='.s:cdCursorLight       .' gui=none'
+exec 'hi CursorLine'                                  .' guibg='.s:cdCursorDarkDark    .' gui=none'
+exec 'hi CursorColumn'                                .' guibg='.s:cdCursorDarkDark    .' gui=none'
+exec 'hi Directory'      .' guifg='.s:cdBlue          .' guibg='.s:cdBack              .' gui=none'
+exec 'hi DiffAdd'                                     .' guibg='.s:cdDiffGreenLight    .' gui=none'
+exec 'hi DiffChange'                                  .' guibg='.s:cdDiffRedDark       .' gui=none'
+exec 'hi DiffDelete'                                  .' guibg='.s:cdDiffRedLight      .' gui=none'
+exec 'hi DiffText'                                    .' guibg='.s:cdDiffRedLight      .' gui=none'
+exec 'hi EndOfBuffer'    .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack              .' gui=none'
+exec 'hi ErrorMsg'       .' guifg='.s:cdRed           .' guibg='.s:cdBack              .' gui=none'
+exec 'hi VertSplit'      .' guibg='.s:cdSplitDark     .' guibg='.s:cdBack              .' gui=none'
+exec 'hi Folded'         .' guifg='.s:cdLeftLight     .' guibg='.s:cdLeftDark          .' gui=none'
+exec 'hi FoldColumn'     .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack              .' gui=none'
+exec 'hi SignColumn'                                  .' guibg='.s:cdBack              .' gui=none'
+exec 'hi IncSearch'                                   .' guibg='.s:cdSearchCurrent     .' gui=none'
+exec 'hi LineNr'         .' guifg='.s:cdPopupFront    .' guibg='.s:cdBack              .' gui=none'
 exec 'hi CursorLineNr'   .' guifg='.s:cdPopupFront    .' guibg='.s:cdBack              .' gui=none'
-exec 'hi MatchParen'                                  .' guibg='.s:cdCursorDark
-exec 'hi ModeMsg'        .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark
-exec 'hi MoreMsg'        .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark
-exec 'hi NonText'        .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack
-exec 'hi Pmenu'          .' guifg='.s:cdPopupFront    .' guibg='.s:cdPopupBack
-exec 'hi PmenuSel'       .' guifg='.s:cdPopupFront    .' guibg='.s:cdPopupHighlightBlue
-exec 'hi PmenuSbar'                                   .' guibg='.s:cdPopupHighlightGray
-exec 'hi PmenuThumb'                                  .' guibg='.s:cdPopupFront
-exec 'hi Question'       .' guifg='.s:cdBlue          .' guibg='.s:cdBack
-exec 'hi Search'                                      .' guibg='.s:cdSearch
-exec 'hi SpecialKey'     .' guifg='.s:cdBlue
-exec 'hi StatusLine'     .' guifg='.s:cdFront         .' guibg='.s:cdLeftMid
-exec 'hi StatusLineNC'   .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark
-exec 'hi TabLine'        .' guifg='.s:cdFront         .' guibg='.s:cdTabOther
-exec 'hi TabLineFill '   .' guifg='.s:cdFront         .' guibg='.s:cdTabOutside
-exec 'hi TabLineSel'     .' guifg='.s:cdFront         .' guibg='.s:cdTabCurrent
+exec 'hi MatchParen'                                  .' guibg='.s:cdCursorDark        .' gui=none'
+exec 'hi ModeMsg'        .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark          .' gui=none'
+exec 'hi MoreMsg'        .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark          .' gui=none'
+exec 'hi NonText'        .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack              .' gui=none'
+exec 'hi Pmenu'          .' guifg='.s:cdPopupFront    .' guibg='.s:cdPopupBack         .' gui=none'
+exec 'hi PmenuSel'       .' guifg='.s:cdPopupFront    .' guibg='.s:cdPopupHighlightBlue.' gui=none'
+exec 'hi PmenuSbar'                                   .' guibg='.s:cdPopupHighlightGray.' gui=none'
+exec 'hi PmenuThumb'                                  .' guibg='.s:cdPopupFront        .' gui=none'
+exec 'hi Question'       .' guifg='.s:cdBlue          .' guibg='.s:cdBack              .' gui=none'
+exec 'hi Search'                                      .' guibg='.s:cdSearch            .' gui=none'
+exec 'hi SpecialKey'     .' guifg='.s:cdBlue                                           .' gui=none'
+exec 'hi StatusLine'     .' guifg='.s:cdFront         .' guibg='.s:cdLeftMid           .' gui=none'
+exec 'hi StatusLineNC'   .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark          .' gui=none'
+exec 'hi TabLine'        .' guifg='.s:cdFront         .' guibg='.s:cdTabOther          .' gui=none'
+exec 'hi TabLineFill '   .' guifg='.s:cdFront         .' guibg='.s:cdTabOutside        .' gui=none'
+exec 'hi TabLineSel'     .' guifg='.s:cdFront         .' guibg='.s:cdTabCurrent        .' gui=none'
 exec 'hi Title'                                                                        .' gui=bold'
-exec 'hi Visual'                                      .' guibg='.s:cdSelection
-exec 'hi VisualNOS'                                   .' guibg='.s:cdRed
-exec 'hi WarningMsg'     .' guifg='.s:cdOrange        .' guibg='.s:cdBack
-exec 'hi WildMenu'                                    .' guibg='.s:cdSelection
+exec 'hi Visual'                                      .' guibg='.s:cdSelection         .' gui=none'
+exec 'hi VisualNOS'                                   .' guibg='.s:cdRed               .' gui=none'
+exec 'hi WarningMsg'     .' guifg='.s:cdOrange        .' guibg='.s:cdBack              .' gui=none'
+exec 'hi WildMenu'                                    .' guibg='.s:cdSelection         .' gui=none'
 
 " Legacy groups for official git.vim and diff.vim syntax
 hi! link diffAdded DiffAdd
