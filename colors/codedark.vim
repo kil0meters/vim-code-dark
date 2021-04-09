@@ -9,239 +9,181 @@ if exists("syntax_on")
 endif
 let g:colors_name="codedark"
 
-" Highlighting function (inspiration from https://github.com/chriskempson/base16-vim)
-if &t_Co >= 256
-    let g:codedark_term256=1
-elseif !exists("g:codedark_term256")
-    let g:codedark_term256=0
-endif
-fun! <sid>hi(group, fg, bg, attr, sp)
-  if !empty(a:fg)
-    exec "hi " . a:group . " guifg=" . a:fg.gui . " ctermfg=" . (g:codedark_term256 ? a:fg.cterm256 : a:fg.cterm)
-  endif
-  if !empty(a:bg)
-    exec "hi " . a:group . " guibg=" . a:bg.gui . " ctermbg=" . (g:codedark_term256 ? a:bg.cterm256 : a:bg.cterm)
-  endif
-  if a:attr != ""
-    exec "hi " . a:group . " gui=" . a:attr . " cterm=" . a:attr
-  endif
-  if !empty(a:sp)
-    exec "hi " . a:group . " guisp=" . a:sp.gui
-  endif
-endfun
-
 " ------------------
 " Color definitions:
 " ------------------
 
-" Terminal colors (base16):
-let s:cterm00 = "00"
-let s:cterm03 = "08"
-let s:cterm05 = "07"
-let s:cterm07 = "15"
-let s:cterm08 = "01"
-let s:cterm0A = "03"
-let s:cterm0B = "02"
-let s:cterm0C = "06"
-let s:cterm0D = "04"
-let s:cterm0E = "05"
-if exists('base16colorspace') && base16colorspace == "256"
-  let s:cterm01 = "18"
-  let s:cterm02 = "19"
-  let s:cterm04 = "20"
-  let s:cterm06 = "21"
-  let s:cterm09 = "16"
-  let s:cterm0F = "17"
-else
-  let s:cterm01 = "00"
-  let s:cterm02 = "08"
-  let s:cterm04 = "07"
-  let s:cterm06 = "07"
-  let s:cterm09 = "06"
-  let s:cterm0F = "03"
-endif
-
 " General appearance colors:
 " (some of them may be unused)
 
-let s:cdNone = {'gui': 'NONE', 'cterm': 'NONE', 'cterm256': 'NONE'}
-let s:cdFront = {'gui': '#D4D4D4', 'cterm': s:cterm05, 'cterm256': '188'}
-let s:cdBack = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
+let s:cdNone = 'NONE'
+let s:cdFront = '#D4D4D4'
+let s:cdBack = '#1E1E1E'
 
-let s:cdTabCurrent = {'gui': '#1E1E1E', 'cterm': s:cterm00, 'cterm256': '234'}
-let s:cdTabOther = {'gui': '#2D2D2D', 'cterm': s:cterm01, 'cterm256': '236'}
-let s:cdTabOutside = {'gui': '#252526', 'cterm': s:cterm01, 'cterm256': '235'}
+let s:cdTabCurrent = '#1E1E1E'
+let s:cdTabOther = '#2D2D2D'
+let s:cdTabOutside = '#252526'
 
-let s:cdLeftDark = {'gui': '#252526', 'cterm': s:cterm01, 'cterm256': '235'}
-let s:cdLeftMid = {'gui': '#373737', 'cterm': s:cterm03, 'cterm256': '237'}
-let s:cdLeftLight = {'gui': '#3F3F46', 'cterm': s:cterm03, 'cterm256': '238'}
+let s:cdLeftDark = '#252526'
+let s:cdLeftMid = '#373737'
+let s:cdLeftLight = '#3F3F46'
 
-let s:cdPopupFront = {'gui': '#BBBBBB', 'cterm': s:cterm06, 'cterm256': '250'}
-let s:cdPopupBack = {'gui': '#2D2D30', 'cterm': s:cterm01, 'cterm256': '236'}
-let s:cdPopupHighlightBlue = {'gui': '#073655', 'cterm': s:cterm0D, 'cterm256': '24'}
-let s:cdPopupHighlightGray = {'gui': '#3D3D40', 'cterm': s:cterm03, 'cterm256': '237'}
+let s:cdPopupFront = '#BBBBBB'
+let s:cdPopupBack = '#2D2D30'
+let s:cdPopupHighlightBlue = '#073655'
+let s:cdPopupHighlightGray = '#3D3D40'
 
-let s:cdSplitLight = {'gui': '#898989', 'cterm': s:cterm04, 'cterm256': '245'}
-let s:cdSplitDark = {'gui': '#444444', 'cterm': s:cterm03, 'cterm256': '238'}
-let s:cdSplitThumb = {'gui': '#424242', 'cterm': s:cterm04, 'cterm256': '238'}
+let s:cdSplitLight = '#898989'
+let s:cdSplitDark = '#444444'
+let s:cdSplitThumb = '#424242'
 
-let s:cdCursorDarkDark = {'gui': '#222222', 'cterm': s:cterm01, 'cterm256': '235'}
-let s:cdCursorDark = {'gui': '#51504F', 'cterm': s:cterm03, 'cterm256': '239'}
-let s:cdCursorLight = {'gui': '#AEAFAD', 'cterm': s:cterm04, 'cterm256': '145'}
-let s:cdSelection = {'gui': '#264F78', 'cterm': s:cterm03, 'cterm256': '24'}
-let s:cdLineNumber = {'gui': '#5A5A5A', 'cterm': s:cterm04, 'cterm256': '240'}
+let s:cdCursorDarkDark = '#222222'
+let s:cdCursorDark = '#51504F'
+let s:cdCursorLight = '#AEAFAD'
+let s:cdSelection = '#264F78'
+let s:cdLineNumber = '#5A5A5A'
 
-let s:cdDiffRedDark = {'gui': '#4B1818', 'cterm': s:cterm08, 'cterm256': '52'}
-let s:cdDiffRedLight = {'gui': '#6F1313', 'cterm': s:cterm08, 'cterm256': '52'}
-let s:cdDiffRedLightLight = {'gui': '#FB0101', 'cterm': s:cterm08, 'cterm256': '09'}
-let s:cdDiffGreenDark = {'gui': '#373D29', 'cterm': s:cterm0B, 'cterm256': '237'}
-let s:cdDiffGreenLight = {'gui': '#4B5632', 'cterm': s:cterm09, 'cterm256': '58'}
+let s:cdDiffRedDark = '#4B1818'
+let s:cdDiffRedLight = '#6F1313'
+let s:cdDiffRedLightLight = '#FB0101'
+let s:cdDiffGreenDark = '#373D29'
+let s:cdDiffGreenLight = '#4B5632'
 
-let s:cdSearchCurrent = {'gui': '#4B5632', 'cterm': s:cterm09, 'cterm256': '58'}
-let s:cdSearch = {'gui': '#264F78', 'cterm': s:cterm03, 'cterm256': '24'}
+let s:cdSearchCurrent = '#4B5632'
+let s:cdSearch = '#264F78'
 
 " Syntax colors:
 
-if !exists("g:codedark_conservative")
-    let g:codedark_conservative=0
-endif
+let s:cdGray = '#808080'
+let s:cdViolet = '#646695'
+let s:cdBlue = '#569CD6'
+let s:cdDarkBlue = '#223E55'
+let s:cdLightBlue = '#9CDCFE'
+let s:cdGreen = '#6A9955'
+let s:cdBlueGreen = '#4EC9B0'
+let s:cdLightGreen = '#B5CEA8'
+let s:cdRed = '#F44747'
+let s:cdOrange = '#CE9178'
+let s:cdLightRed = '#D16969'
+let s:cdYellowOrange = '#D7BA7D'
+let s:cdYellow = '#DCDCAA'
+let s:cdPink = '#C586C0'
 
-let s:cdGray = {'gui': '#808080', 'cterm': s:cterm04, 'cterm256': '08'}
-let s:cdViolet = {'gui': '#646695', 'cterm': s:cterm04, 'cterm256': '60'}
-let s:cdBlue = {'gui': '#569CD6', 'cterm': s:cterm0D, 'cterm256': '75'}
-let s:cdDarkBlue = {'gui': '#223E55', 'cterm': s:cterm0D, 'cterm256': '73'}
-let s:cdLightBlue = {'gui': '#9CDCFE', 'cterm': s:cterm0C, 'cterm256': '117'}
-if g:codedark_conservative | let s:cdLightBlue = s:cdFront | endif
-let s:cdGreen = {'gui': '#6A9955', 'cterm': s:cterm0B, 'cterm256': '65'}
-let s:cdBlueGreen = {'gui': '#4EC9B0', 'cterm': s:cterm0F, 'cterm256': '43'}
-let s:cdLightGreen = {'gui': '#B5CEA8', 'cterm': s:cterm09, 'cterm256': '151'}
-let s:cdRed = {'gui': '#F44747', 'cterm': s:cterm08, 'cterm256': '203'}
-let s:cdOrange = {'gui': '#CE9178', 'cterm': s:cterm0F, 'cterm256': '173'}
-let s:cdLightRed = {'gui': '#D16969', 'cterm': s:cterm08, 'cterm256': '167'}
-if g:codedark_conservative | let s:cdLightRed = s:cdOrange | endif
-let s:cdYellowOrange = {'gui': '#D7BA7D', 'cterm': s:cterm0A, 'cterm256': '179'}
-let s:cdYellow = {'gui': '#DCDCAA', 'cterm': s:cterm0A, 'cterm256': '187'}
-if g:codedark_conservative | let s:cdYellow = s:cdFront | endif
-let s:cdPink = {'gui': '#C586C0', 'cterm': s:cterm0E, 'cterm256': '176'}
-if g:codedark_conservative | let s:cdPink = s:cdBlue | endif
-
-" Vim editor colors
-"    <sid>hi(GROUP, FOREGROUND, BACKGROUND, ATTRIBUTE, SPECIAL)
-call <sid>hi('Normal', s:cdFront, s:cdBack, 'none', {})
-call <sid>hi('ColorColumn', {}, s:cdCursorDarkDark, 'none', {})
-call <sid>hi('Cursor', s:cdCursorDark, s:cdCursorLight, 'none', {})
-call <sid>hi('CursorLine', {}, s:cdCursorDarkDark, 'none', {})
-call <sid>hi('CursorColumn', {}, s:cdCursorDarkDark, 'none', {})
-call <sid>hi('Directory', s:cdBlue, s:cdBack, 'none', {})
-call <sid>hi('DiffAdd', {}, s:cdDiffGreenLight, 'none', {})
-call <sid>hi('DiffChange', {}, s:cdDiffRedDark, 'none', {})
-call <sid>hi('DiffDelete', {}, s:cdDiffRedLight, 'none', {})
-call <sid>hi('DiffText', {}, s:cdDiffRedLight, 'none', {})
-call <sid>hi('EndOfBuffer', s:cdLineNumber, s:cdBack, 'none', {})
-call <sid>hi('ErrorMsg', s:cdRed, s:cdBack, 'none', {})
-call <sid>hi('VertSplit', s:cdSplitDark, s:cdBack, 'none', {})
-call <sid>hi('Folded', s:cdLeftLight, s:cdLeftDark, 'none', {})
-call <sid>hi('FoldColumn', s:cdLineNumber, s:cdBack, 'none', {})
-call <sid>hi('SignColumn', {}, s:cdBack, 'none', {})
-call <sid>hi('IncSearch', s:cdNone, s:cdSearchCurrent, 'none', {})
-call <sid>hi('LineNr', s:cdLineNumber, s:cdBack, 'none', {})
-call <sid>hi('CursorLineNr', s:cdPopupFront, s:cdBack, 'none', {})
-call <sid>hi('MatchParen', s:cdNone, s:cdCursorDark, 'none', {})
-call <sid>hi('ModeMsg', s:cdFront, s:cdLeftDark, 'none', {})
-call <sid>hi('MoreMsg', s:cdFront, s:cdLeftDark, 'none', {})
-call <sid>hi('NonText', s:cdLineNumber, s:cdBack, 'none', {})
-call <sid>hi('Pmenu', s:cdPopupFront, s:cdPopupBack, 'none', {})
-call <sid>hi('PmenuSel', s:cdPopupFront, s:cdPopupHighlightBlue, 'none', {})
-call <sid>hi('PmenuSbar', {}, s:cdPopupHighlightGray, 'none', {})
-call <sid>hi('PmenuThumb', {}, s:cdPopupFront, 'none', {})
-call <sid>hi('Question', s:cdBlue, s:cdBack, 'none', {})
-call <sid>hi('Search', s:cdNone, s:cdSearch, 'none', {})
-call <sid>hi('SpecialKey', s:cdBlue, {}, 'none', {})
-call <sid>hi('StatusLine', s:cdFront, s:cdLeftMid, 'none', {})
-call <sid>hi('StatusLineNC', s:cdFront, s:cdLeftDark, 'none', {})
-call <sid>hi('TabLine', s:cdFront, s:cdTabOther, 'none', {})
-call <sid>hi('TabLineFill', s:cdFront, s:cdTabOutside, 'none', {})
-call <sid>hi('TabLineSel', s:cdFront, s:cdTabCurrent, 'none', {})
-call <sid>hi('Title', s:cdNone, s:cdNone, 'bold', {})
-call <sid>hi('Visual', s:cdNone, s:cdSelection, 'none', {})
-call <sid>hi('VisualNOS', s:cdNone, s:cdSelection, 'none', {})
-call <sid>hi('WarningMsg', s:cdOrange, s:cdBack, 'none', {})
-call <sid>hi('WildMenu', s:cdNone, s:cdSelection, 'none', {})
+exec 'hi Normal'         .' guifg='.s:cdFront         .' guibg='.s:cdBack
+exec 'hi ColorColumn'    .' guibg='.s:cdCursorDarkDark
+exec 'hi Cursor'         .' guifg='.s:cdCursorDark    .' guibg='.s:cdCursorLight
+exec 'hi CursorLine'                                  .' guibg='.s:cdCursorDarkDark
+exec 'hi CursorColumn'                                .' guibg='.s:cdCursorDarkDark
+exec 'hi Directory'      .' guifg='.s:cdBlue          .' guibg='.s:cdBack
+exec 'hi DiffAdd'                                     .' guibg='.s:cdDiffGreenLight
+exec 'hi DiffChange'                                  .' guibg='.s:cdDiffRedDark
+exec 'hi DiffDelete'                                  .' guibg='.s:cdDiffRedLight
+exec 'hi DiffText'                                    .' guibg='.s:cdDiffRedLight
+exec 'hi EndOfBuffer'    .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack
+exec 'hi ErrorMsg'       .' guifg='.s:cdRed           .' guibg='.s:cdBack
+exec 'hi VertSplit'      .' guifg='.s:cdSplitDark     .' guibg='.s:cdBack
+exec 'hi Folded'         .' guifg='.s:cdLeftLight     .' guibg='.s:cdLeftDark
+exec 'hi FoldColumn'     .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack
+exec 'hi SignColumn'                                  .' guibg='.s:cdBack
+exec 'hi IncSearch'                                   .' guibg='.s:cdSearchCurrent
+exec 'hi LineNr'         .' guifg='.s:cdPopupFront    .' guibg='.s:cdBack
+exec 'hi CursorLineNr'   .' guifg='.s:cdPopupFront    .' guibg='.s:cdBack              .' gui=none'
+exec 'hi MatchParen'                                  .' guibg='.s:cdCursorDark
+exec 'hi ModeMsg'        .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark
+exec 'hi MoreMsg'        .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark
+exec 'hi NonText'        .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack
+exec 'hi Pmenu'          .' guifg='.s:cdPopupFront    .' guibg='.s:cdPopupBack
+exec 'hi PmenuSel'       .' guifg='.s:cdPopupFront    .' guibg='.s:cdPopupHighlightBlue
+exec 'hi PmenuSbar'                                   .' guibg='.s:cdPopupHighlightGray
+exec 'hi PmenuThumb'                                  .' guibg='.s:cdPopupFront
+exec 'hi Question'       .' guifg='.s:cdBlue          .' guibg='.s:cdBack
+exec 'hi Search'                                      .' guibg='.s:cdSearch
+exec 'hi SpecialKey'     .' guifg='.s:cdBlue
+exec 'hi StatusLine'     .' guifg='.s:cdFront         .' guibg='.s:cdLeftMid
+exec 'hi StatusLineNC'   .' guifg='.s:cdFront         .' guibg='.s:cdLeftDark
+exec 'hi TabLine'        .' guifg='.s:cdFront         .' guibg='.s:cdTabOther
+exec 'hi TabLineFill '   .' guifg='.s:cdFront         .' guibg='.s:cdTabOutside
+exec 'hi TabLineSel'     .' guifg='.s:cdFront         .' guibg='.s:cdTabCurrent
+exec 'hi Title'                                                                        .' gui=bold'
+exec 'hi Visual'                                      .' guibg='.s:cdSelection
+exec 'hi VisualNOS'                                   .' guibg='.s:cdRed
+exec 'hi WarningMsg'     .' guifg='.s:cdOrange        .' guibg='.s:cdBack
+exec 'hi WildMenu'                                    .' guibg='.s:cdSelection
 
 " Legacy groups for official git.vim and diff.vim syntax
 hi! link diffAdded DiffAdd
 hi! link diffChanged DiffChange
 hi! link diffRemoved DiffDelete
 
-call <sid>hi('Comment', s:cdGreen, {}, 'none', {})
+exec 'hi Comment'.' guifg='.s:cdGreen.' gui=none'
 
-call <sid>hi('Constant', s:cdPink, {}, 'nocombine,bold', {})
-call <sid>hi('String', s:cdOrange, {}, 'none', {})
-call <sid>hi('Character', s:cdOrange, {}, 'none', {})
-call <sid>hi('Number', s:cdPink, {}, 'none', {})
-call <sid>hi('Boolean', s:cdBlue, {}, 'italic', {})
-call <sid>hi('Float', s:cdLightGreen, {}, 'none', {})
+exec 'hi Constant' .' guifg='.s:cdPink      .' gui=nocombine,bold'
+exec 'hi String'   .' guifg='.s:cdOrange    .' gui=none'
+exec 'hi Character'.' guifg='.s:cdOrange    .' gui=none'
+exec 'hi Number'   .' guifg='.s:cdPink      .' gui=none'
+exec 'hi Boolean'  .' guifg='.s:cdBlue      .' gui=italic'
+exec 'hi Float'    .' guifg='.s:cdLightGreen.' gui=none'
 
-call <sid>hi('Identifier', s:cdLightBlue, {}, 'none', {})
-call <sid>hi('Function', s:cdYellow, {}, 'none', {})
+exec 'hi Identifier'.' guifg='.s:cdLightBlue.' gui=none'
+exec 'hi Function'  .' guifg='.s:cdYellow   .' gui=none'
 
-call <sid>hi('Statement', s:cdPink, {}, 'none', {})
-call <sid>hi('Conditional', s:cdPink, {}, 'bold', {})
-call <sid>hi('Repeat', s:cdPink, {}, 'none', {})
-call <sid>hi('Label', s:cdPink, {}, 'none', {})
-call <sid>hi('Operator', s:cdYellowOrange, {}, 'none', {})
-call <sid>hi('Keyword', s:cdPink, {}, 'none', {})
-call <sid>hi('Exception', s:cdPink, {}, 'none', {})
+exec 'hi Statement'  .' guifg='.s:cdPink        .' gui=none'
+exec 'hi Conditional'.' guifg='.s:cdPink        .' gui=bold'
+exec 'hi Repeat'     .' guifg='.s:cdPink        .' gui=none'
+exec 'hi Label'      .' guifg='.s:cdPink        .' gui=none'
+exec 'hi Operator'   .' guifg='.s:cdYellowOrange.' gui=none'
+exec 'hi Keyword'    .' guifg='.s:cdPink        .' gui=none'
+exec 'hi Exception'  .' guifg='.s:cdPink        .' gui=none'
 
-call <sid>hi('PreProc', s:cdPink, {}, 'none', {})
-call <sid>hi('Include', s:cdPink, {}, 'none', {})
-call <sid>hi('Define', s:cdPink, {}, 'none', {})
-call <sid>hi('Macro', s:cdPink, {}, 'none', {})
-call <sid>hi('PreCondit', s:cdPink, {}, 'none', {})
+exec 'hi PreProc'  .' guifg='.s:cdPink.' gui=none'
+exec 'hi Include'  .' guifg='.s:cdPink.' gui=none'
+exec 'hi Define'   .' guifg='.s:cdPink.' gui=none'
+exec 'hi Macro'    .' guifg='.s:cdPink.' gui=none'
+exec 'hi PreCondit'.' guifg='.s:cdPink.' gui=none'
 
-call <sid>hi('Type', s:cdBlue, {}, 'italic', {})
-call <sid>hi('StorageClass', s:cdBlue, {}, 'none', {})
-call <sid>hi('Structure', s:cdBlue, {}, 'none', {})
-call <sid>hi('Typedef', s:cdBlue, {}, 'none', {})
-call <sid>hi('Special', s:cdYellowOrange, {}, 'none', {})
-call <sid>hi('SpecialChar', s:cdRed, {}, 'none', {})
-call <sid>hi('Tag', s:cdFront, {}, 'none', {})
-call <sid>hi('Delimiter', s:cdGray, {}, 'none', {})
-call <sid>hi('SpecialComment', s:cdGreen, {}, 'none', {})
-call <sid>hi('Debug', s:cdFront, {}, 'none', {})
+exec 'hi Type'          .' guifg='.s:cdBlue        .' gui=italic'
+exec 'hi StorageClass'  .' guifg='.s:cdBlue        .' gui=none'
+exec 'hi Structure'     .' guifg='.s:cdBlue        .' gui=none'
+exec 'hi Typedef'       .' guifg='.s:cdBlue        .' gui=none'
+exec 'hi Special'       .' guifg='.s:cdYellowOrange.' gui=none'
+exec 'hi SpecialChar'   .' guifg='.s:cdRed         .' gui=none'
+exec 'hi Tag'           .' guifg='.s:cdFront       .' gui=none'
+exec 'hi Delimiter'     .' guifg='.s:cdGray        .' gui=none'
+exec 'hi SpecialComment'.' guifg='.s:cdGreen       .' gui=none'
+exec 'hi Debug'         .' guifg='.s:cdFront       .' gui=none'
 
-call <sid>hi('Underlined', s:cdNone, {}, 'underline', {})
-call <sid>hi("Conceal", s:cdFront, s:cdBack, 'none', {})
+exec 'hi Underlined'                                       .' gui=underline'
+exec 'hi Conceal'   .' guifg='.s:cdFront.' guibg='.s:cdBack.' gui=none'
 
-call <sid>hi('Ignore', s:cdFront, {}, 'none', {})
+exec 'hi Ignore'.' guifg='.s:cdFront.' gui=none'
 
-call <sid>hi('Error', s:cdRed, s:cdBack, 'undercurl', s:cdRed)
+exec 'hi Error'.' guifg='.s:cdRed.' guibg='.s:cdBack.' gui=undercurl'
 
-call <sid>hi('Todo', s:cdNone, s:cdLeftMid, 'none', {})
+exec 'hi Todo'.' guibg='.s:cdLeftMid.' gui=none'
 
-call <sid>hi('SpellBad', s:cdRed, {}, 'undercurl', s:cdRed)
-call <sid>hi('SpellCap', s:cdRed, {}, 'undercurl', s:cdRed)
-call <sid>hi('SpellRare', s:cdRed, {}, 'undercurl', s:cdRed)
-call <sid>hi('SpellLocal', s:cdRed, {}, 'undercurl', s:cdRed)
+exec 'hi SpellBad'  .' guifg='.s:cdRed.' gui=undercurl'.' guisp='.s:cdRed
+exec 'hi SpellCap'  .' guifg='.s:cdRed.' gui=undercurl'.' guisp='.s:cdRed
+exec 'hi SpellRare' .' guifg='.s:cdRed.' gui=undercurl'.' guisp='.s:cdRed
+exec 'hi SpellLocal'.' guifg='.s:cdRed.' gui=undercurl'.' guisp='.s:cdRed
 
 " Markdown:
-call <sid>hi('markdownBold', {}, {}, 'bold', {})
-call <sid>hi('markdownItalic', {}, {}, 'italic', {})
-call <sid>hi('markdownBoldItalic', {}, {}, 'italic,bold', {})
-call <sid>hi('markdownCode', s:cdOrange, {}, 'none', {})
-call <sid>hi('markdownRule', s:cdBlue, {}, 'bold', {})
-call <sid>hi('markdownCodeDelimiter', s:cdOrange, {}, 'none', {})
-call <sid>hi('markdownFootnote', s:cdOrange, {}, 'none', {})
-call <sid>hi('markdownFootnoteDefinition', s:cdOrange, {}, 'none', {})
-call <sid>hi('markdownUrl', s:cdLightBlue, {}, 'underline', {})
-call <sid>hi('markdownLinkText', s:cdOrange, {}, 'none', {})
-call <sid>hi('markdownEscape', s:cdYellowOrange, {}, 'none', {})
-call <sid>hi('markdownH1', s:cdBlue, {}, 'bold', {})
-call <sid>hi('markdownH2', s:cdYellow, {}, 'bold', {})
-call <sid>hi('markdownH3', s:cdPink, {}, 'bold', {})
-call <sid>hi('markdownH4', s:cdOrange, {}, 'bold', {})
-call <sid>hi('markdownH5', s:cdRed, {}, 'bold', {})
-call <sid>hi('markdownH6', s:cdGreen, {}, 'bold', {})
+exec 'hi markdownBold'                                         .' gui=bold'
+exec 'hi markdownItalic'                                       .' gui=italic'
+exec 'hi markdownBoldItalic'                                   .' gui=italic,bold'
+exec 'hi markdownCode'              .' guifg='.s:cdOrange      .' gui=none'
+exec 'hi markdownRule'              .' guifg='.s:cdBlue        .' gui=bold'
+exec 'hi markdownCodeDelimiter'     .' guifg='.s:cdOrange      .' gui=none'
+exec 'hi markdownFootnote'          .' guifg='.s:cdOrange      .' gui=none'
+exec 'hi markdownFootnoteDefinition'.' guifg='.s:cdOrange      .' gui=none'
+exec 'hi markdownUrl'               .' guifg='.s:cdLightBlue   .' gui=underline'
+exec 'hi markdownLinkText'          .' guifg='.s:cdOrange      .' gui=none'
+exec 'hi markdownEscape'            .' guifg='.s:cdYellowOrange.' gui=none'
+exec 'hi markdownH1'                .' guifg='.s:cdBlue        .' gui=bold'
+exec 'hi markdownH2'                .' guifg='.s:cdYellow      .' gui=bold'
+exec 'hi markdownH3'                .' guifg='.s:cdPink        .' gui=bold'
+exec 'hi markdownH4'                .' guifg='.s:cdOrange      .' gui=bold'
+exec 'hi markdownH5'                .' guifg='.s:cdRed         .' gui=bold'
+exec 'hi markdownH6'                .' guifg='.s:cdGreen       .' gui=bold'
 hi! link markdownH1Delimiter markdownH1
 hi! link markdownH2Delimiter markdownH2
 hi! link markdownH3Delimiter markdownH3
@@ -250,7 +192,7 @@ hi! link markdownH5Delimiter markdownH5
 hi! link markdownH6Delimiter markdownH6
 
 " Vimwiki:
-call <sid>hi('VimwikiHeaderChar', s:cdGreen, {}, 'none', {})
+exec 'hi VimwikiHeaderChar'.' guifg='.s:cdGreen.' gui=none'
 hi! link VimwikiHeader1 markdownH1
 hi! link VimwikiHeader2 markdownH2
 hi! link VimwikiHeader3 markdownH3
@@ -259,60 +201,51 @@ hi! link VimwikiHeader5 markdownH5
 hi! link VimwikiHeader6 markdownH6
 hi! link VimwikiLink markdownUrl
 
-" TeX:
-call <sid>hi('texStatement', s:cdBlue, {}, 'none', {})
-call <sid>hi('texBeginEnd', s:cdYellow, {}, 'none', {})
-call <sid>hi('texBeginEndName', s:cdLightBlue, {}, 'none', {})
-call <sid>hi('texOption', s:cdLightBlue, {}, 'none', {})
-call <sid>hi('texBeginEndModifier', s:cdLightBlue, {}, 'none', {})
-call <sid>hi('texDocType', s:cdPink, {}, 'none', {})
-call <sid>hi('texDocTypeArgs', s:cdLightBlue, {}, 'none', {})
-
 " Git:
-call <sid>hi('gitcommitHeader', s:cdGray, {}, 'none', {})
-call <sid>hi('gitcommitOnBranch', s:cdGray, {}, 'none', {})
-call <sid>hi('gitcommitBranch', s:cdPink, {}, 'none', {})
-call <sid>hi('gitcommitComment', s:cdGray, {}, 'none', {})
-call <sid>hi('gitcommitSelectedType', s:cdGreen, {}, 'none', {})
-call <sid>hi('gitcommitSelectedFile', s:cdGreen, {}, 'none', {})
-call <sid>hi('gitcommitDiscardedType', s:cdRed, {}, 'none', {})
-call <sid>hi('gitcommitDiscardedFile', s:cdRed, {}, 'none', {})
-call <sid>hi('gitcommitOverflow', s:cdRed, {}, 'none', {})
-call <sid>hi('gitcommitSummary', s:cdPink, {}, 'none', {})
-call <sid>hi('gitcommitBlank', s:cdPink, {}, 'none', {})
+exec 'hi gitcommitHeader'       .' guifg='.s:cdGray .' gui=none'
+exec 'hi gitcommitOnBranch'     .' guifg='.s:cdGray .' gui=none'
+exec 'hi gitcommitBranch'       .' guifg='.s:cdPink .' gui=none'
+exec 'hi gitcommitComment'      .' guifg='.s:cdGray .' gui=none'
+exec 'hi gitcommitSelectedType' .' guifg='.s:cdGreen.' gui=none'
+exec 'hi gitcommitSelectedFile' .' guifg='.s:cdGreen.' gui=none'
+exec 'hi gitcommitDiscardedType'.' guifg='.s:cdRed  .' gui=none'
+exec 'hi gitcommitDiscardedFile'.' guifg='.s:cdRed  .' gui=none'
+exec 'hi gitcommitOverflow'     .' guifg='.s:cdRed  .' gui=none'
+exec 'hi gitcommitSummary'      .' guifg='.s:cdPink .' gui=none'
+exec 'hi gitcommitBlank'        .' guifg='.s:cdPink .' gui=none'
 
 " LSP:
-" call <sid>hi('LspReferenceText', {}, s:cdCursorDark, 'none', {})
-call <sid>hi('LspReferenceRead', {}, s:cdCursorDark, 'none', {})
-call <sid>hi('LspReferenceWrite', {}, s:cdCursorDark, 'none', {})
-call <sid>hi('LspDiagnosticsDefaultError', s:cdRed, {}, 'none', {})
-call <sid>hi('LspDiagnosticsDefaultWarning',s:cdYellow, {}, 'none', {})
-call <sid>hi('LspDiagnosticsDefaultInformation', s:cdViolet, {}, 'none', {})
-call <sid>hi('LspDiagnosticsDefaultHint', s:cdPink, {}, 'none', {})
+" call <sid>hi('LspReferenceText', '', s:cdCursorDark, 'none', '')
+exec 'hi LspReferenceRead'                                     .' guibg='.s:cdCursorDark.' gui=none'
+exec 'hi LspReferenceWrite'                                    .' guibg='.s:cdCursorDark.' gui=none'
+exec 'hi LspDiagnosticsDefaultError'      .' guifg='.s:cdRed                            .' gui=none'
+exec 'hi LspDiagnosticsDefaultWarning'    .' guifg='.s:cdYellow                         .' gui=none'
+exec 'hi LspDiagnosticsDefaultInformation'.' guifg='.s:cdViolet                         .' gui=none'
+exec 'hi LspDiagnosticsDefaultHint'       .' guifg='.s:cdPink                           .' gui=none'
 
 " TreeSitter:
-call <sid>hi('TSVariable', s:cdLightBlue, {}, 'none', {}) " Not sure about this
-call <sid>hi('TSProperty', s:cdYellow, {}, 'none', {}) " Not sure about this
-call <sid>hi('TSVariableBuiltin', s:cdPink, {}, 'none', {})
+exec 'hi TSVariable'       .' guifg='.s:cdLightBlue.' gui=none'
+exec 'hi TSProperty'       .' guifg='.s:cdYellow   .' gui=none'
+exec 'hi TSVariableBuiltin'.' guifg='.s:cdPink     .' gui=none'
 
 " Rainbow Paren:
-" call <sid>hi('rainbowcol1', s:cdBlue, {}, 'none', {})   " 7
-" call <sid>hi('rainbowcol2', s:cdYellow, {}, 'none', {}) " 4
-" call <sid>hi('rainbowcol3', s:cdGreen, {}, 'none', {})  " 1
-" call <sid>hi('rainbowcol4', s:cdOrange, {}, 'none', {}) " 5
-" call <sid>hi('rainbowcol5', s:cdPink, {}, 'none', {})   " 2
-" call <sid>hi('rainbowcol6', s:cdViolet, {}, 'none', {}) " 6
-" call <sid>hi('rainbowcol7', s:cdRed, {}, 'none', {})    " 3
+" rainbowcol1 -> 7
+" rainbowcol2 -> 4
+" rainbowcol3 -> 1
+" rainbowcol4 -> 5
+" rainbowcol5 -> 2
+" rainbowcol6 -> 6
+" rainbowcol7 -> 3
 
-call <sid>hi('rainbowcol3', s:cdBlue, {}, 'none', {})   " 1
-call <sid>hi('rainbowcol5', s:cdYellow, {}, 'none', {}) " 2
-call <sid>hi('rainbowcol7', s:cdGreen, {}, 'none', {})  " 3
-call <sid>hi('rainbowcol2', s:cdOrange, {}, 'none', {}) " 4
-call <sid>hi('rainbowcol4', s:cdRed, {}, 'none', {})    " 5
-call <sid>hi('rainbowcol6', s:cdViolet, {}, 'none', {}) " 6
-call <sid>hi('rainbowcol1', s:cdPink, {}, 'none', {})   " 7
+exec 'hi rainbowcol3'.' guifg='.s:cdBlue  .' gui=none'
+exec 'hi rainbowcol5'.' guifg='.s:cdYellow.' gui=none'
+exec 'hi rainbowcol7'.' guifg='.s:cdGreen .' gui=none'
+exec 'hi rainbowcol2'.' guifg='.s:cdOrange.' gui=none'
+exec 'hi rainbowcol4'.' guifg='.s:cdRed   .' gui=none'
+exec 'hi rainbowcol6'.' guifg='.s:cdViolet.' gui=none'
+exec 'hi rainbowcol1'.' guifg='.s:cdPink  .' gui=none'
 
 " GitSigns:
-call <sid>hi('GitSignsAdd', s:cdGreen, {}, 'none', {})
-call <sid>hi('GitSignsChange', s:cdBlue, {}, 'none', {})
-call <sid>hi('GitSignsDelete', s:cdRed, {}, 'none', {})
+exec 'hi GitSignsAdd'   .' guifg='.s:cdGreen.' gui=none'
+exec 'hi GitSignsChange'.' guifg='.s:cdBlue .' gui=none'
+exec 'hi GitSignsDelete'.' guifg='.s:cdRed  .' gui=none'
