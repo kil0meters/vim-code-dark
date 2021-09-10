@@ -81,7 +81,7 @@ exec 'hi DiffDelete'                                  .' guibg='.s:cdDiffRedLigh
 exec 'hi DiffText'                                    .' guibg='.s:cdDiffRedLight      .' gui=none'
 exec 'hi EndOfBuffer'    .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack              .' gui=none'
 exec 'hi ErrorMsg'       .' guifg='.s:cdRed           .' guibg='.s:cdBack              .' gui=none'
-exec 'hi VertSplit'      .' guibg='.s:cdSplitDark     .' guibg='.s:cdBack              .' gui=none'
+exec 'hi VertSplit'      .' guifg='.s:cdSplitDark     .' guibg='.s:cdBack              .' gui=none'
 exec 'hi Folded'         .' guifg='.s:cdLeftLight     .' guibg='.s:cdLeftDark          .' gui=none'
 exec 'hi FoldColumn'     .' guifg='.s:cdLineNumber    .' guibg='.s:cdBack              .' gui=none'
 exec 'hi SignColumn'                                  .' guibg='.s:cdBack              .' gui=none'
